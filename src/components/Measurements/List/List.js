@@ -1,10 +1,8 @@
 import MeasureSummary from '../MeasureSummary';
 
-const List = () => (
+const List = ({ measures }) => (
   <div className="list section">
-    <MeasureSummary />
-    <MeasureSummary />
-    <MeasureSummary />
+    {measures && measures.map(measure => <MeasureSummary measure={measure} key={measure.id} />)}
   </div>
 );
 
