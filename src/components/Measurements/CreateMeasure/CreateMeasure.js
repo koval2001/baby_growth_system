@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { createMeasure } from '../../../store/actions/measureActions';
 
-const CreateMeasure = () => {
+const CreateMeasure = ({ createMeasure }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -14,8 +16,9 @@ const CreateMeasure = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(content);
+    // console.log(title);
+    // console.log(content);
+    createMeasure({ title, content });
   };
 
   return (
@@ -40,4 +43,10 @@ const CreateMeasure = () => {
   );
 };
 
-export default CreateMeasure;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMeasure: (measure) => dispatch(createMeasure(measure)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateMeasure);

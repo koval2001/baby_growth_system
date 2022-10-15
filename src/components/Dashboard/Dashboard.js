@@ -1,17 +1,28 @@
 import Notifications from '../UI/Notifications';
 import List from '../Measurements/List';
+import { connect } from 'react-redux';
 
-const Dashboard = () => (
-  <div className="dashboard container">
-    <div className="row">
-      <div class="col s12 m6">
-        <List />
-      </div>
-      <div className="col s12 m5 offset-m1">
-        <Notifications />
+const Dashboard = ({ measures }) => {
+  console.log(measures);
+
+  return (
+    <div className="dashboard container">
+      <div className="row">
+        <div className="col s12 m6">
+          <List measures={measures} />
+        </div>
+        <div className="col s12 m5 offset-m1">
+          <Notifications />
+        </div>
       </div>
     </div>
-  </div>
-);
+  )
+};
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    measures: state.measure.measures,
+  }
+};
+
+export default connect(mapStateToProps)(Dashboard);
