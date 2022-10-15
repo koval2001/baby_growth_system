@@ -10,7 +10,11 @@ const measureReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_MEASURE':
       console.log('created measure', action.measure);
-      break;
+      return state;
+
+    case 'ADD_MEASURE_ERROR':
+      console.log('created measure error', action.error);
+      return state;
 
     default:
       console.log('default case');
